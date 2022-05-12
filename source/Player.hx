@@ -5,10 +5,10 @@ import flixel.FlxSprite;
 class Player extends FlxSprite
 {
 	// ============================================================================================
-	private final _playerSpeed = 100;
+	private final _playerSpeed = 200;
 	private final _dragForce = 4;
 	private final _gravityForce = 600;
-	private final _jumpForce = 1.5;
+	private final _jumpForce = 1.2;
 
 	private final _walkAnimation = "walk";
 	private final _idleAnimation = "idle";

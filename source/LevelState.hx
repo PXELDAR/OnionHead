@@ -19,6 +19,7 @@ class LevelState extends FlxState
 	private var _starGroup:FlxTypedGroup<FlxSprite>;
 
 	private var _score = 0;
+	private var _totalStarCount = 0;
 
 	private final _platformSpriteDir = "assets/images/platform.png";
 	private final _platformLayer = "platform";
@@ -87,6 +88,8 @@ class LevelState extends FlxState
 		final starLayer:TiledObjectLayer = cast(map.getLayer(_starLayer));
 		_starGroup = new FlxTypedGroup<FlxSprite>();
 
+		_totalStarCount = starLayer.objects.length;
+
 		for (star in starLayer.objects)
 		{
 			final starSprite = new FlxSprite(star.x, star.y);
@@ -105,6 +108,12 @@ class LevelState extends FlxState
 		star.kill();
 
 		_hud.incrementScore();
+
+		if (_hud.score == _totalStarCount)
+		{
+			final levelComplete = new LevelComplete();
+			openSubState(levelComplete);
+		}
 	}
 
 	// ============================================================================================

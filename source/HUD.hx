@@ -1,13 +1,17 @@
 import flixel.FlxSprite;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.system.FlxAssets;
 import flixel.text.FlxText;
 
 class HUD extends FlxTypedGroup<FlxSprite>
 {
 	// ============================================================================================
+	public var score = 0;
+
 	private var _scoreField:FlxText;
-	private var _score = 0;
 	private var _scoreText = "Score: ";
+
+	private final _fontDir = "assets/fonts/Koulen-Regular.ttf";
 
 	// ============================================================================================
 
@@ -15,7 +19,8 @@ class HUD extends FlxTypedGroup<FlxSprite>
 	{
 		super();
 
-		_scoreField = new FlxText(0, 0, 0, _scoreText + Std.string(_score));
+		FlxAssets.FONT_DEFAULT = _fontDir;
+		_scoreField = new FlxText(32, 32, 132, _scoreText + Std.string(score), 24);
 		_scoreField.scrollFactor.set(0, 0);
 		add(_scoreField);
 	}
@@ -24,8 +29,8 @@ class HUD extends FlxTypedGroup<FlxSprite>
 
 	public function incrementScore()
 	{
-		_score++;
-		_scoreField.text = 'Score: $_score';
+		score++;
+		_scoreField.text = 'Score: $score';
 	}
 
 	// ============================================================================================
