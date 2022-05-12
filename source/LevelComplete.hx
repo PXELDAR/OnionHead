@@ -17,9 +17,12 @@ class LevelComplete extends FlxSubState
 	private final _levelCompleteTextSize = 36;
 	private final _levelCompleteTextOffset = 45;
 
-	private final _continueText = "Press SPACE to continue";
+	private final _continueText = "Press SPACE to continue.";
 	private final _continueTextSize = 18;
 	private final _continueTextOffset = 135;
+
+	private final _gameFinishedText = "WELL DONE!!";
+	private final _restartText = "Press SPACE to restart."
 
 	private var _nextLevel:Class<LevelState>;
 
@@ -42,10 +45,17 @@ class LevelComplete extends FlxSubState
 		add(boundingBox);
 
 		final levelCompleteField = new FlxText(0, (boundingBox.y + _levelCompleteTextOffset), 0, _levelCompleteText, _levelCompleteTextSize);
+		final subCompleteField = new FlxText(0, (boundingBox.y + _continueTextOffset), 0, _continueText, _continueTextSize);
+
+		if (_nextLevel == null)
+		{
+			levelCompleteField.text = _gameFinishedText;
+			subCompleteField.text = _restartText;
+		}
+
 		levelCompleteField.screenCenter(X);
 		add(levelCompleteField);
 
-		final subCompleteField = new FlxText(0, (boundingBox.y + _continueTextOffset), 0, _continueText, _continueTextSize);
 		subCompleteField.screenCenter(X);
 		add(subCompleteField);
 	}
@@ -58,8 +68,13 @@ class LevelComplete extends FlxSubState
 
 		if (FlxG.keys.justPressed.SPACE)
 		{
-			FlxG.switchState(Type.createInstance(_nextLevel, []));
+			if (_nextLevel == null)
+				? FlxG.switchState(new LevelOne());
+				: FlxG.switchState(Type.createInstance(_nextLevel, []));
+
 			close();
 		}
 	}
+
+	// ============================================================================================
 }
