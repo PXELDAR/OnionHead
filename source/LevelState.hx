@@ -10,6 +10,8 @@ import flixel.util.FlxCollision;
 class LevelState extends FlxState
 {
 	// ============================================================================================
+	private var _hud:HUD;
+
 	private var _levelBounds:FlxGroup;
 	private var _player:Player;
 
@@ -44,6 +46,9 @@ class LevelState extends FlxState
 		add(player);
 
 		_levelBounds = FlxCollision.createCameraWall(FlxG.camera, true, 1);
+
+		_hud = new HUD();
+		add(_hud);
 	}
 
 	// ============================================================================================
@@ -98,7 +103,8 @@ class LevelState extends FlxState
 	private function onOverlapStar(_, star:FlxSprite)
 	{
 		star.kill();
-		_score++;
+
+		_hud.incrementScore();
 	}
 
 	// ============================================================================================
