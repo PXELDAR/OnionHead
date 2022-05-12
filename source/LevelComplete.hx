@@ -1,13 +1,33 @@
+import flixel.FlxG;
 import flixel.FlxSprite;
+import flixel.FlxState;
 import flixel.FlxSubState;
 import flixel.text.FlxText;
 
 class LevelComplete extends FlxSubState
 {
 	// ============================================================================================
-	public function new()
+	private final _backGroundColor = 0x61000000;
+
+	private final _menuBoxColor = 0xFF6699ff;
+	private final _menuBoxXSize = 460;
+	private final _menuBoxYSize = 200;
+
+	private final _levelCompleteText = "LEVEL COMPLETE!";
+	private final _levelCompleteTextSize = 36;
+	private final _levelCompleteTextOffset = 45;
+
+	private final _continueText = "Press SPACE to continue";
+	private final _continueTextSize = 18;
+	private final _continueTextOffset = 135;
+
+	private var _nextLevel:Class<LevelState>;
+
+	// ============================================================================================
+	public function new(nextLevel:Class<LevelState>)
 	{
-		super(0x61000000);
+		super(_backGroundColor);
+		_nextLevel = nextLevel;
 	}
 
 	// ============================================================================================
@@ -17,19 +37,29 @@ class LevelComplete extends FlxSubState
 		super.create();
 
 		final boundingBox = new FlxSprite();
-		boundingBox.makeGraphic(460, 200, 0xFF6699ff);
+		boundingBox.makeGraphic(_menuBoxXSize, _menuBoxYSize, _menuBoxColor);
 		boundingBox.screenCenter(XY);
 		add(boundingBox);
 
-		final levelCompleteField = new FlxText(0, (boundingBox.y + 45), 0, "LEVEL COMPLETE!", 36);
+		final levelCompleteField = new FlxText(0, (boundingBox.y + _levelCompleteTextOffset), 0, _levelCompleteText, _levelCompleteTextSize);
 		levelCompleteField.screenCenter(X);
 		add(levelCompleteField);
 
-		final subCompleteField = new FlxText(0, (boundingBox.y + 135), 0, "Press SPACE to continue", 18);
+		final subCompleteField = new FlxText(0, (boundingBox.y + _continueTextOffset), 0, _continueText, _continueTextSize);
 		subCompleteField.screenCenter(X);
 		add(subCompleteField);
 	}
 
 	// ============================================================================================
-	// ============================================================================================
+
+	override public function update(elapsed:Float)
+	{
+		super.update(elapsed);
+
+		if (FlxG.keys.justPressed.SPACE)
+		{
+			FlxG.switchState(Type.createInstance(_nextLevel, []));
+			close();
+		}
+	}
 }

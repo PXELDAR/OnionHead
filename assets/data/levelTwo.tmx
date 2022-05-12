@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="80" height="45" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="35">
+ <tileset firstgid="1" source="levelAssets.tsx"/>
+ <objectgroup id="2" name="star">
+  <object id="21" gid="2" x="592" y="640" width="24" height="22"/>
+  <object id="22" gid="2" x="384" y="640" width="24" height="22"/>
+  <object id="23" gid="2" x="800" y="608" width="24" height="22"/>
+  <object id="24" gid="2" x="1024" y="608" width="24" height="22"/>
+  <object id="25" gid="2" x="736" y="480" width="24" height="22"/>
+  <object id="26" gid="2" x="624" y="480" width="24" height="22"/>
+  <object id="27" gid="2" x="512" y="480" width="24" height="22"/>
+  <object id="28" gid="2" x="400" y="384" width="24" height="22"/>
+  <object id="29" gid="2" x="352" y="384" width="24" height="22"/>
+  <object id="30" gid="2" x="304" y="384" width="24" height="22"/>
+  <object id="31" gid="2" x="864" y="384" width="24" height="22"/>
+  <object id="32" gid="2" x="896" y="384" width="24" height="22"/>
+  <object id="33" gid="2" x="928" y="384" width="24" height="22"/>
+  <object id="34" gid="2" x="624" y="288" width="24" height="22"/>
+ </objectgroup>
+ <objectgroup id="3" name="platform">
+  <object id="1" gid="1" x="320" y="672" width="400" height="32"/>
+  <object id="2" gid="1" x="720" y="640" width="400" height="32"/>
+  <object id="7" gid="1" x="432" y="512" width="400" height="32"/>
+  <object id="8" gid="1" x="848" y="416" width="400" height="32"/>
+  <object id="9" gid="1" x="32" y="416" width="400" height="32"/>
+  <object id="17" gid="1" x="432" y="320" width="400" height="32"/>
+ </objectgroup>
+</map>

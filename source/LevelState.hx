@@ -10,6 +10,8 @@ import flixel.util.FlxCollision;
 class LevelState extends FlxState
 {
 	// ============================================================================================
+	private var _nextLevel:Class<LevelState>;
+
 	private var _hud:HUD;
 
 	private var _levelBounds:FlxGroup;
@@ -111,7 +113,7 @@ class LevelState extends FlxState
 
 		if (_hud.score == _totalStarCount)
 		{
-			final levelComplete = new LevelComplete();
+			final levelComplete = new LevelComplete(_nextLevel);
 			openSubState(levelComplete);
 		}
 	}

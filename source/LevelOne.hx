@@ -2,7 +2,7 @@ package;
 
 import flixel.FlxState;
 
-class PlayState extends LevelState
+class LevelOne extends LevelState
 {
 	// ============================================================================================
 	private final _playerXPos = 80;
@@ -12,6 +12,7 @@ class PlayState extends LevelState
 	override public function create()
 	{
 		super.create();
+		_nextLevel = LevelTwo;
 		createLevel("levelOne", {x: _playerXPos, y: _playerYPos});
 	}
 
