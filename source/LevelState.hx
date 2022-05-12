@@ -35,8 +35,12 @@ class LevelState extends FlxState
 	override public function create()
 	{
 		bgColor = _backGroundColor;
-
 		_collectSound = FlxG.sound.load(_collectSoundDir);
+		FlxG.autoPause = false;
+
+		#if !debug
+		FlxG.mouse.visible = false;
+		#end
 
 		if (FlxG.sound.music == null)
 		{
@@ -71,6 +75,12 @@ class LevelState extends FlxState
 		FlxG.collide(_player, _levelBounds);
 		FlxG.collide(_player, _platformGroup);
 		FlxG.overlap(_player, _starGroup, onOverlapStar);
+
+		if (FlxG.keys.justPressed.ESCAPE)
+		{
+			final pauseMenu = new PauseMenu();
+			openSubState(pauseMenu);
+		}
 	}
 
 	// ============================================================================================
