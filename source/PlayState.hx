@@ -1,22 +1,18 @@
 package;
 
 import flixel.FlxState;
-import flixel.text.FlxText;
 
-class PlayState extends FlxState
+class PlayState extends LevelState
 {
+	// ============================================================================================
+	private final _playerXPos = 80;
+	private final _playerYPos = 670;
+
 	// ============================================================================================
 	override public function create()
 	{
 		super.create();
-		add(new FlxText("Hello World", 32).screenCenter());
-	}
-
-	// ============================================================================================
-
-	override public function update(elapsed:Float)
-	{
-		super.update(elapsed);
+		createLevel("levelOne", {x: _playerXPos, y: _playerYPos});
 	}
 
 	// ============================================================================================

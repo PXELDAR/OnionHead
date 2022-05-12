@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="left-up" width="80" height="45" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="19">
+ <tileset firstgid="1" source="levelAssets.tsx"/>
+ <objectgroup id="2" name="platform">
+  <object id="5" gid="1" x="160" y="640" width="400" height="32"/>
+  <object id="6" gid="1" x="672" y="512" width="400" height="32"/>
+  <object id="7" gid="1" x="173.333" y="400" width="400" height="32"/>
+ </objectgroup>
+ <objectgroup id="3" name="helper">
+  <object id="4" x="595.333" y="431.5" width="32" height="48"/>
+ </objectgroup>
+ <objectgroup id="4" name="star">
+  <object id="8" gid="2" x="208" y="608" width="24" height="22"/>
+  <object id="9" gid="2" x="496" y="608" width="24" height="22"/>
+  <object id="10" gid="2" x="576" y="496" width="24" height="22"/>
+  <object id="11" gid="2" x="816" y="480" width="24" height="22"/>
+  <object id="12" gid="2" x="656" y="384" width="24" height="22"/>
+  <object id="13" gid="2" x="480" y="368" width="24" height="22"/>
+  <object id="14" gid="2" x="320" y="368" width="24" height="22"/>
+  <object id="15" gid="1" x="656" y="288" width="400" height="32"/>
+  <object id="17" gid="2" x="576" y="256" width="24" height="22"/>
+  <object id="18" gid="2" x="848" y="256" width="24" height="22"/>
+ </objectgroup>
+</map>
