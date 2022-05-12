@@ -16,6 +16,8 @@ class LevelState extends FlxState
 	private var _platformGroup:FlxTypedGroup<FlxSprite>;
 	private var _starGroup:FlxTypedGroup<FlxSprite>;
 
+	private var _score = 0;
+
 	private final _platformSpriteDir = "assets/images/platform.png";
 	private final _platformLayer = "platform";
 
@@ -52,6 +54,7 @@ class LevelState extends FlxState
 
 		FlxG.collide(_player, _levelBounds);
 		FlxG.collide(_player, _platformGroup);
+		FlxG.overlap(_player, _starGroup, onOverlapStar);
 	}
 
 	// ============================================================================================
@@ -64,7 +67,7 @@ class LevelState extends FlxState
 		for (platform in platformLayer.objects)
 		{
 			final platformSprite = new FlxSprite(platform.x, platform.y);
-			platformSprite.loadGraphic(_platformSpriteDir, false, 400, 32);
+			platformSprite.loadGraphic(_platformSpriteDir, false, 400, 32); // actual image size
 			platformSprite.immovable = true;
 			_platformGroup.add(platformSprite);
 		}
@@ -82,12 +85,20 @@ class LevelState extends FlxState
 		for (star in starLayer.objects)
 		{
 			final starSprite = new FlxSprite(star.x, star.y);
-			starSprite.loadGraphic(_starSpriteDir, false, 24, 22);
+			starSprite.loadGraphic(_starSpriteDir, false, 24, 22); // actual image size
 			starSprite.immovable = true;
 			_starGroup.add(starSprite);
 		}
 
 		add(_starGroup);
+	}
+
+	// ============================================================================================
+
+	private function onOverlapStar(_, star:FlxSprite)
+	{
+		star.kill();
+		_score++;
 	}
 
 	// ============================================================================================
