@@ -1,10 +1,13 @@
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
+import flixel.system.FlxSound;
 
 class Player extends FlxSprite
 {
 	// ============================================================================================
+	private var _jumpSound:FlxSound;
+
 	private final _playerSpeed = 200;
 	private final _dragForce = 4;
 	private final _gravityForce = 600;
@@ -12,8 +15,8 @@ class Player extends FlxSprite
 
 	private final _walkAnimation = "walk";
 	private final _idleAnimation = "idle";
-
-	private var _playerSpriteDir = "assets/images/player.png";
+	private final _playerSpriteDir = "assets/images/player.png";
+	private final _jumpSoundDir = "assets/sounds/jump.wav";
 
 	// ============================================================================================
 	public function new(xPos:Int = 0, yPos:Int = 0)
@@ -31,6 +34,8 @@ class Player extends FlxSprite
 		setFacingFlip(FlxObject.RIGHT, true, false);
 
 		acceleration.y = _gravityForce / _jumpForce;
+
+		_jumpSound = FlxG.sound.load(_jumpSoundDir);
 	}
 
 	// ============================================================================================
@@ -83,6 +88,7 @@ class Player extends FlxSprite
 		if (jump && isTouching(FlxObject.FLOOR))
 		{
 			velocity.y = -_gravityForce / _jumpForce;
+			_jumpSound.play(true);
 		}
 	}
 

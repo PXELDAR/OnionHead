@@ -5,35 +5,43 @@ import flixel.addons.editors.tiled.TiledMap;
 import flixel.addons.editors.tiled.TiledObjectLayer;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.group.FlxGroup;
+import flixel.system.FlxSound;
 import flixel.util.FlxCollision;
 
 class LevelState extends FlxState
 {
 	// ============================================================================================
 	private var _nextLevel:Class<LevelState>;
-
 	private var _hud:HUD;
-
 	private var _levelBounds:FlxGroup;
 	private var _player:Player;
-
 	private var _platformGroup:FlxTypedGroup<FlxSprite>;
 	private var _starGroup:FlxTypedGroup<FlxSprite>;
+	private var _collectSound:FlxSound;
 
+	private var _backGroundColor = 0xFFCCCCCC;
 	private var _score = 0;
 	private var _totalStarCount = 0;
 
 	private final _platformSpriteDir = "assets/images/platform.png";
 	private final _platformLayer = "platform";
-
 	private final _starSpriteDir = "assets/images/star.png";
 	private final _starLayer = "star";
+	private final _musicDir = "assets/music/music.ogg";
+	private final _collectSoundDir = "assets/sounds/coin.wav";
 
 	// ============================================================================================
 
 	override public function create()
 	{
-		bgColor = 0xffcccccc;
+		bgColor = _backGroundColor;
+
+		_collectSound = FlxG.sound.load(_collectSoundDir);
+
+		if (FlxG.sound.music == null)
+		{
+			FlxG.sound.playMusic(_musicDir);
+		}
 	}
 
 	// ============================================================================================
@@ -108,8 +116,8 @@ class LevelState extends FlxState
 	private function onOverlapStar(_, star:FlxSprite)
 	{
 		star.kill();
-
 		_hud.incrementScore();
+		_collectSound.play(true);
 
 		if (_hud.score == _totalStarCount)
 		{

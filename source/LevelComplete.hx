@@ -22,7 +22,7 @@ class LevelComplete extends FlxSubState
 	private final _continueTextOffset = 135;
 
 	private final _gameFinishedText = "WELL DONE!!";
-	private final _restartText = "Press SPACE to restart."
+	private final _restartText = "Press SPACE to restart.";
 
 	private var _nextLevel:Class<LevelState>;
 
@@ -69,8 +69,13 @@ class LevelComplete extends FlxSubState
 		if (FlxG.keys.justPressed.SPACE)
 		{
 			if (_nextLevel == null)
-				? FlxG.switchState(new LevelOne());
-				: FlxG.switchState(Type.createInstance(_nextLevel, []));
+			{
+				FlxG.switchState(new LevelOne());
+			}
+			else
+			{
+				FlxG.switchState(Type.createInstance(_nextLevel, []));
+			}
 
 			close();
 		}
