@@ -12,6 +12,7 @@ class Player extends FlxSprite
 	private final _dragForce = 4;
 	private final _gravityForce = 600;
 	private final _jumpForce = 1.2;
+	private var _jumpCount = 0;
 
 	private final _walkAnimation = "walk";
 	private final _idleAnimation = "idle";
@@ -83,12 +84,18 @@ class Player extends FlxSprite
 
 	private function checkJump()
 	{
-		final jump = FlxG.keys.anyPressed([UP, W, SPACE]);
+		final jump = FlxG.keys.anyJustPressed([UP, W, SPACE]);
 
-		if (jump && isTouching(FlxObject.FLOOR))
+		if (jump && _jumpCount < 2)
 		{
 			velocity.y = -_gravityForce / _jumpForce;
 			_jumpSound.play(true);
+			_jumpCount++;
+		}
+
+		if (isTouching(FlxObject.FLOOR))
+		{
+			_jumpCount = 0;
 		}
 	}
 
