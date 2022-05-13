@@ -7,6 +7,7 @@ class Player extends FlxSprite
 {
 	// ============================================================================================
 	private var _jumpSound:FlxSound;
+	private final _controls = Controls.instance;
 
 	private final _playerSpeed = 200;
 	private final _dragForce = 4;
@@ -52,8 +53,8 @@ class Player extends FlxSprite
 
 	private function checkMovement()
 	{
-		final left = FlxG.keys.anyPressed([LEFT, A]);
-		final right = FlxG.keys.anyPressed([RIGHT, D]);
+		final left = _controls.left.check();
+		final right = _controls.right.check();
 
 		if ((left || right) && !(left && right))
 		{
@@ -84,7 +85,7 @@ class Player extends FlxSprite
 
 	private function checkJump()
 	{
-		final jump = FlxG.keys.anyJustPressed([UP, W, SPACE]);
+		final jump = _controls.jump.check();
 
 		if (jump && _jumpCount < 2)
 		{

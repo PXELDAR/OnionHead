@@ -18,6 +18,7 @@ class LevelState extends FlxState
 	private var _platformGroup:FlxTypedGroup<FlxSprite>;
 	private var _starGroup:FlxTypedGroup<FlxSprite>;
 	private var _collectSound:FlxSound;
+	private final _controls = Controls.instance;
 
 	private var _backGroundColor = 0xFFCCCCCC;
 	private var _score = 0;
@@ -76,7 +77,7 @@ class LevelState extends FlxState
 		FlxG.collide(_player, _platformGroup);
 		FlxG.overlap(_player, _starGroup, onOverlapStar);
 
-		if (FlxG.keys.justPressed.ESCAPE)
+		if (_controls.pause.check())
 		{
 			final pauseMenu = new PauseMenu();
 			openSubState(pauseMenu);

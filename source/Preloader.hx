@@ -26,5 +26,4 @@ class Preloader extends FlxBasePreloader
 		text.y = 670;
 		addChild(text);
 	}
-	// ============================================================================================
 }

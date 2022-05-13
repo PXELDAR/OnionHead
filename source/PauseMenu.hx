@@ -5,9 +5,11 @@ import flixel.text.FlxText;
 class PauseMenu extends FlxSubState
 {
 	// ============================================================================================
+	private final _controls = Controls.instance;
 	private final _backGroundColor = 0x52000000;
-	private final _pauseText = "Game Paused!";
 	private final _pauseTextSize = 42;
+	private final _pauseText = "Game Paused!";
+	private var _seconds = 0.0;
 
 	// ============================================================================================
 	public function new()
@@ -23,6 +25,8 @@ class PauseMenu extends FlxSubState
 		final pauseField = new FlxText(0, 0, 0, _pauseText, _pauseTextSize);
 		pauseField.screenCenter(XY);
 		add(pauseField);
+
+		FlxG.sound.music.pause();
 	}
 
 	// ============================================================================================
@@ -31,7 +35,9 @@ class PauseMenu extends FlxSubState
 	{
 		super.update(elapsed);
 
-		if (FlxG.keys.justPressed.ESCAPE)
+		_seconds += elapsed;
+
+		if (_controls.pause.check() && _seconds > 0.1)
 		{
 			FlxG.sound.music.play();
 			close();
